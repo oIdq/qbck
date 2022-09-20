@@ -108,12 +108,12 @@ cmp() {
 
   OUTPUT_FILENAME="$NAME.tar.gz"
   OUTPUT="$OUTPUT_DIR/$OUTPUT_FILENAME"
-  TRANSFORM="s|$(basename $BCK_DIR)|$NAME|"
+  TRANSFORM="s|$(basename "$BCK_DIR")|$NAME|"
 
   echo "\n$BCK_DIR -> $OUTPUT\n(root directory of tar being $NAME/)\n"
   confirm || exit 1
 
-  tar --transform=$TRANSFORM -cC "$(dirname $BCK_DIR)" "$(basename $BCK_DIR)" | pv -s $(($(du -sk $BCK_DIR | awk '{print $1}') * 1024)) | gzip > "$OUTPUT"
+  tar --transform=$TRANSFORM -cC "$(dirname "$BCK_DIR")" "$(basename "$BCK_DIR")" | pv -s $(($(du -sk "$BCK_DIR" | awk '{print $1}') * 1024)) | gzip > "$OUTPUT"
 }
 
 if [ $# -lt 1 ]; then
