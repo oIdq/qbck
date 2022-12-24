@@ -40,7 +40,7 @@ do_bck() {
     NAME="${FILE#*$PREFIX/}"
   fi
 
-  GCP_FILENAME="$GCP_PREFIX/$NAME"
+  GCP_FILENAME="$GCP_PREFIX/$NAME.gpg"
 
   echo "Uploading '$FILE' as '$GCP_FILENAME'"
   confirm < /dev/tty || exit 1
